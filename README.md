@@ -212,6 +212,5 @@ Spring Boot Developer | Java | REST APIs
 🔒 Best Practice
                 Never share your secret key or passwords in the code.
                 Put sensitive values like `app.jwtSecret` in a separate `.env` file or environment variable.
-                
-   This keeps your project simple, safe, and easy to understand for beginners.
+
 

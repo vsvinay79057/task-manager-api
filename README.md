@@ -1,11 +1,10 @@
-# 🧩 Task Manager API (Spring Boot + JWT + MySQL) :-
+🧩 Task Manager API (Spring Boot + JWT + MySQL) :-
 
 A secure **Task Manager REST API** built with **Spring Boot**, **Spring Security (JWT Authentication)**, and **MySQL**.
 It allows users to register, log in, and perform **CRUD operations** on tasks, each linked to their account.
 
 --------------------------------------------------
-
-## 🚀 Features :-
+ 🚀 Features :-
 
 * User Registration & Login (JWT-based Authentication)
 * Password Encryption with BCrypt
@@ -16,8 +15,7 @@ It allows users to register, log in, and perform **CRUD operations** on tasks, e
 * Clean Layered Architecture (Controller → Service → Repository)
 
 --------------------------------------------------
-
-## 🧱 Tech Stack :-
+🧱 Tech Stack :-
 
 | Component  | Technology                  |
 | ---------- | --------------------------- |
@@ -29,8 +27,7 @@ It allows users to register, log in, and perform **CRUD operations** on tasks, e
 | Build Tool | Maven                       |
 
 --------------------------------------------------
-
-## 📂 Project Structure :-
+📂 Project Structure :-
 
 src/main/java/com/example/
 │
@@ -65,10 +62,8 @@ src/main/java/com/example/
 
 
 -----------------------------------------------
-
-## ⚙️ Setup Instructions :-
-
-### 1️⃣ Prerequisites :-
+⚙️ Setup Instructions :-
+ 1️⃣ Prerequisites :-
 
 * Install **Java 17+**
 * Install **Maven**
@@ -76,15 +71,10 @@ src/main/java/com/example/
 * Use an IDE such as **IntelliJ IDEA** or **Spring Tool Suite**
 
 -----------------------------------------------
-
-### 3️⃣ Configure Database :-
-
+3️⃣ Configure Database :-
 Create a new database in MySQL:
 
-```sql
 CREATE DATABASE task_manager;
-```
-
 Update your **`application.properties`**:-
 
 spring.datasource.url=jdbc:mysql://localhost:3306/task_manager?createDatabaseIfNotExist=true
@@ -99,8 +89,7 @@ app.jwtExpirationMs=86400000
 server.port=8080
 
 -----------------------------------------------
-
-### 4️⃣ Build & Run
+ 4️⃣ Build & Run
 
 Use Maven:
 
@@ -109,9 +98,9 @@ Or directly from your IDE, run:
 
 --------------------------------------------------
 
-## 🧪 API Endpoints :-
+🧪 API Endpoints :-
 
-### 🔐 Authentication
+ 🔐 Authentication
 
 | Method | Endpoint             | Description             |
 | ------ | -------------------- | ----------------------- |
@@ -129,7 +118,7 @@ POST /api/auth/register
 
 -------------------------------------------------------
 
-### 📝 Tasks (Authenticated routes) :-
+ 📝 Tasks (Authenticated routes) :-
 
 Add `Authorization: Bearer <token>` header.
 
@@ -143,7 +132,7 @@ Add `Authorization: Bearer <token>` header.
 
 --------------------------------------------------------
 
-### 🔑 Example Login Response :-
+🔑 Example Login Response :-
 
 ```json
 {
@@ -159,7 +148,7 @@ Authorization → Type: Bearer Token
 
 ---------------------------------------------
 
-## 🧰 Common Issues :-
+ 🧰 Common Issues :-
 
 | Problem              | Solution                                          |
 | -------------------- | ------------------------------------------------- |
@@ -169,7 +158,7 @@ Authorization → Type: Bearer Token
 
 ---------------------------------------------------------
 
-## 📘 Swagger Integration (Optional) :-
+ 📘 Swagger Integration (Optional) :-
 
 Add this dependency in `pom.xml` to enable Swagger UI:
 
@@ -184,10 +173,45 @@ Access Swagger UI after running :-
 
 ------------------------------------------------------
 
-## 🧑‍💻 Author :-
+ 🧑‍💻 Author :-
 
 **Vinay Singh**
 Spring Boot Developer | Java | REST APIs
 
 -------------------------------------------------------
+                                                                 🧾 Additional Notes & Explanations:-
+🔄 Token Expiration :-
+                     Your login token (JWT) is valid only for a set time (as defined in `app.jwtExpirationMs`).
+                     Once it expires, you need to **log in again** to get a new token.
+ 🔐 Password Protection :-
+                    User passwords are **encrypted with BCrypt**, meaning they are safely stored and cannot be seen, even by the developer.
+
+🧩 No Sessions on Server :-
+                   The API is **stateless** — it doesn’t remember who’s logged in.
+                   Every request must include your token in the header like this:
+    Authorization: Bearer <your_token>
+
+ ⚠️ Error Messages :-
+                   If you send a wrong or expired token, the system automatically replies with an error message (handled by `JwtAuthenticationEntryPoint`).
+
+🚀 How You Can Improve It :-
+                  You can make the project even better by:
+
+                  * Adding **roles** like Admin or Normal User.
+                  * Adding **task status** (e.g., Pending, Completed).
+                  * Adding **pagination and sorting** for large lists.
+                  * Integrating **Swagger UI** for better API documentation.
+                  * Switching databases (e.g., PostgreSQL or MongoDB).
+
+🧪 Tips for Testing
+                  1. First call `/api/auth/register`
+                  2. Then `/api/auth/login` to get your token
+                  3. Use that token for all `/api/tasks/*` routes
+                  4. Save your requests in Postman for easy testing
+                  5. Try logging in with different users to confirm that each user only sees their own tasks.
+🔒 Best Practice
+                Never share your secret key or passwords in the code.
+                Put sensitive values like `app.jwtSecret` in a separate `.env` file or environment variable.
+                
+   This keeps your project simple, safe, and easy to understand for beginners.
 
